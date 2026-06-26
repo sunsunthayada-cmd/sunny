@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftShop & Portfolio System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-gift"></i> MerryGift
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="เปิดเมนู">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav id="nav-menu">
+            <a href="#" class="nav-link active" data-target="home-page">หน้าแรก & ร้านค้า</a>
+            <a href="#" class="nav-link" data-target="order-page">ออเดอร์ของฉัน</a>
+            <a href="#" class="nav-link" data-target="payment-page">แจ้งชำระเงิน</a>
+            <a href="#" class="nav-link" data-target="portfolio-page">Portfolio ผู้พัฒนา</a>
+            <a href="#" class="nav-link login-btn" data-target="login-page"><i class="fa-solid fa-user-lock"></i> หลังบ้าน</a>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="home-page" class="page-section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>ยินดีต้อนรับสู่ร้านขายเครื่องเขียน</h1>
+                    <p>พบกับเครื่องเขีย</p>
+                    <a href="#shop-section" class="btn">ช้อปเลยสิ้นค้าใหม่</a>
+                </div>
+            </div>
+
+            <section class="news-section">
+                <h2><i class="fa-solid fa-bullhorn"></i> ข่าวสารและประชาสัมพันธ์</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <h3>โปรโมชั่นเปิดร้านใหม่!</h3>
+                        <p>สมัครสมาชิกวันนี้ รับส่วนลดทันที 10% สำหรับการซื้อครั้งแรก ไม่มีขั้นต่ำ</p>
+                    </div>
+                    <div class="news-card">
+                        <h3>ต้อนรับหน้าฝน ช้อปฉ่ำๆ</h3>
+                        <p>เตรียมพบกับคอลเลกชันร่มและกิ๊ฟช็อปกันน้ำสุด Cute เร็วๆ นี้</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="shop-container" id="shop-section">
+                <div class="products-container">
+                    <h2><i class="fa-solid fa-store"></i> คอลเลกชันสินค้า</h2>
+                    <div class="products-grid" id="products-display">
+                        </div>
+                </div>
+
+                <aside class="cart-container">
+                    <h2><i class="fa-solid fa-shopping-cart"></i> ตะกร้าสินค้าของคุณ</h2>
+                    <div id="cart-items">
+                        <p class="empty-cart">ไม่มีสินค้าในตะกร้า</p>
+                    </div>
+                    <hr>
+                    <div class="cart-summary">
+                        <p>รวมทั้งสิ้น: <strong id="cart-total">0</strong> บาท</p>
+                        <button class="btn btn-block" id="checkout-btn">สั่งซื้อสินค้า</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="order-page" class="page-section">
+            <div class="container">
+                <h2><i class="fa-solid fa-list-check"></i> ตรวจสอบสถานะออเดอร์</h2>
+                <p>รายการสั่งซื้อล่าสุดของคุณในระบบ</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>เลขที่ออเดอร์</th>
+                                <th>วันที่สั่งซื้อ</th>
+                                <th>ยอดรวม</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-history-list">
+                            <tr>
+                                <td colspan="4" style="text-align:center;">ยังไม่มีประวัติการสั่งซื้อ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment-page" class="page-section">
+            <div class="container container-sm">
+                <h2><i class="fa-solid fa-money-check-dollar"></i> แจ้งยืนยันการชำระเงิน</h2>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="pay-order-id">เลขที่ออเดอร์ *</label>
+                        <input type="text" id="pay-order-id" required placeholder="เช่น ORD-XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="pay-name">ชื่อ-นามสกุล ผู้โอน *</label>
+                        <input type="text" id="pay-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pay-amount">จำนวนเงินที่โอน (บาท) *</label>
+                        <input type="number" id="pay-amount" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="pay-file">หลักฐานการโอน (สลิป) *</label>
+                        <input type="file" id="pay-file" required accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-block">ส่งข้อมูลแจ้งชำระเงิน</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="portfolio-page" class="page-section">
+            <div class="container">
+                <div class="portfolio-header">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSef8Z3N-EBwXnF6i1rsF-vctwpkxopuPFv8KF7mAz8OQ&s=10" alt="Profile Picture" class="profile-img">
+                    <h2>อานนท์ คุณแสน</h2>
+                    <p class="subtitle">นักเรียน</p>
+                </div>
+                <hr>
+                <div class="portfolio-grid">
+                    <div class="portfolio-card">
+                        <h3><i class="fa-solid fa-graduation-cap"></i> ประวัติการทำงาน</h3>
+                        <p>ปัจจุบันดำรงตำแหน่งนักเรียนระดับชั้นมัธยมศึกษา โรงเรียนปรีชานุศาสน์ อำเภอเมือง จังหวัดชลบุรี (IoT)</p>
+                    </div>
+                    <div class="portfolio-card">
+                        <h3><i class="fa-solid fa-code"></i> ทักษะความสามารถ</h3>
+                        <p>HTML5 / CSS3 / JavaScript / Responsive Web Design / การจัดการเรียนรู้รูปแบบ 5Es และการพัฒนาโครงงานนวัตกรรมระบบฟาร์มอัจฉริยะ (Smart Farming)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login-page" class="page-section">
+            <div class="container container-sm">
+                <div class="login-box">
+                    <h2><i class="fa-solid fa-lock"></i> ระบบเข้าสู่หลังบ้านผู้ดูแล</h2>
+                    <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">
+                        (Demo: Username = admin / Password = 1234)
+                    </p>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">ชื่อผู้ใช้งาน</label>
+                            <input type="text" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">รหัสผ่าน</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-block">เข้าสู่ระบบ</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="admin-page" class="page-section">
+            <div class="container">
+                <div class="admin-header">
+                    <h2><i class="fa-solid fa-gears"></i> แผงควบคุมผู้ดูแลระบบ (Admin Panel)</h2>
+                    <button class="btn btn-danger" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</button>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-tab="stock-mgmt">จัดการสต็อกสินค้า</button>
+                    <button class="admin-tab-btn" data-tab="staff-mgmt">จัดการพนักงาน</button>
+                </div>
+
+                <div id="stock-mgmt" class="admin-tab-content active">
+                    <h3><i class="fa-solid fa-boxes-stacked"></i> ระบบจัดการสต็อกสินค้า [เพิ่ม, ลบ]</h3>
+                    <form id="add-product-form" class="admin-form-inline">
+                        <input type="text" id="prod-name" placeholder="ชื่อสินค้าใหม่" required>
+                        <input type="number" id="prod-price" placeholder="ราคา (บาท)" required min="0">
+                        <input type="text" id="prod-img" placeholder="URL รูปภาพ (หรือเว้นว่างเพื่อใช้สุ่ม)" value="">
+                        <button type="submit" class="btn"><i class="fa-solid fa-plus"></i> เพิ่มสินค้า</button>
+                    </form>
+                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>รูปภาพ</th>
+                                    <th>ชื่อสินค้า</th>
+                                    <th>ราคา</th>
+                                    <th>การจัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-stock-list">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="staff-mgmt" class="admin-tab-content">
+                    <h3><i class="fa-solid fa-users-gear"></i> ระบบจัดการพนักงาน</h3>
+                    <form id="add-staff-form" class="admin-form-inline">
+                        <input type="text" id="staff-name" placeholder="ชื่อพนักงาน" required>
+                        <input type="text" id="staff-role" placeholder="ตำแหน่งหน้าที่" required>
+                        <button type="submit" class="btn"><i class="fa-solid fa-user-plus"></i> เพิ่มพนักงาน</button>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>ตำแหน่ง</th>
+                                    <th>การจัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-staff-list">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 ร้านกิ๊ฟช็อปและพอร์ตโฟลิโอส่วนตัว. สงวนลิขสิทธิ์ทั้งหมด.</p>
+            <p>พัฒนาโดย นายชูเกียรติ คงกะพันธ์ | โรงเรียนปรีชานุศาสน์ จ.ชลบุรี</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
